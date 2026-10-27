@@ -31,6 +31,15 @@ $listQuickOpen = @($bindings | Where-Object { $_.key -eq 'space space' -and $_.w
 Assert-True ($listQuickOpen.Count -eq 1 -and $listQuickOpen[0].when.Contains("focusedView != 'workbench.debug.watchExpressionsView'")) 'List Quick Open must not intercept Watch Space expansion.'
 $marks = @($bindings | Where-Object { $_.key -eq "space '" })
 Assert-True ($marks.Count -eq 1 -and $marks[0].command -eq 'vim.remap' -and $marks[0].args.commands[0].command -eq ':marks') 'Marks must use the supported Vim remap command format.'
+$testTree = @($bindings | Where-Object { $_.when -and $_.when.StartsWith("focusedView == 'workbench.view.testing' &&") })
+Assert-True ($testTree.Count -eq 8) 'Expected eight Testing tree controls.'
+$expectedTests = @{ j = 'list.focusDown'; k = 'list.focusUp'; r = 'beagle.testing.runFocused'; d = 'beagle.testing.debugFocused'; o = 'testing.editFocusedTest'; 'shift+r' = 'testing.refreshTests'; enter = 'list.toggleExpand'; space = 'list.toggleExpand' }
+foreach ($key in $expectedTests.Keys) {
+    $matching = @($testTree | Where-Object { $_.key -eq $key -and $_.command -eq $expectedTests[$key] })
+    Assert-True ($matching.Count -eq 1) ("Incorrect Testing control: $key")
+    Assert-True ($matching[0].when.Contains('listFocus && !inputFocus && !textInputFocus')) ("Testing control intercepts input: $key")
+}
+Assert-True ($listQuickOpen[0].when.Contains("focusedView != 'workbench.view.testing'")) 'List Quick Open must not intercept Testing Space expansion.'
 if ($CheckInstalledCommands) {
     $codeRoot = Split-Path (Split-Path (Get-Command code -ErrorAction Stop).Source)
     $app = Get-ChildItem -LiteralPath $codeRoot -Directory | ForEach-Object { Join-Path $_.FullName 'resources\app' } | Where-Object { Test-Path -LiteralPath (Join-Path $_ 'out\vs\workbench\workbench.desktop.main.js') } | Select-Object -First 1

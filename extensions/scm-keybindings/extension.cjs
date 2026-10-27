@@ -99,3 +99,19 @@ exports.activate = function (context) {
         await vscode.commands.executeCommand('workbench.debug.action.focusWatchView');
     }));
 };
+const activateBeforeTesting = exports.activate;
+exports.activate = function (context) {
+    activateBeforeTesting(context);
+    for (const [command, group] of [
+        ['beagle.testing.runFocused', 2],
+        ['beagle.testing.debugFocused', 4],
+    ]) {
+        context.subscriptions.push(vscode.commands.registerCommand(command, async () => {
+            // Select the keyboard-focused row; do not use the toolbar's visible-test set.
+            await vscode.commands.executeCommand('list.selectAndPreserveFocus');
+            const selection = await vscode.commands.executeCommand('_testing.getExplorerSelection');
+            if (!selection?.include?.length) return;
+            await vscode.commands.executeCommand('vscode.runTestsById', group, ...selection.include);
+        }));
+    }
+};

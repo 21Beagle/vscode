@@ -127,3 +127,19 @@ After editing your live VSCodeVim leader mappings, export and synchronize them w
 The checks cover all 113 configured leader/mode combinations, duplicate chords, rename, visual selection-to-Watch, visual formatting, Vim marks dispatch, and debug-panel input restrictions. Optional installed-command checking verifies command references against local VS Code and extension definitions. Runtime actions still depend on their context: Rename Symbol needs a language provider, and debug actions need an appropriate debug session.
 
 `Space c r` invokes Rename Symbol in normal mode. `Shift+Alt+Z` invokes VS Code's built-in word highlighting; its old extension command is no longer installed. Variables and Watch are excluded from the list-only `Space Space` chord so Space expands their entries without starting that chord.
+## Testing tree shortcuts
+
+`Space m t` opens Testing from normal mode in the editor. The following controls apply only to the focused Testing tree, leaving filter fields and other inputs alone:
+
+| Key | Action |
+| --- | --- |
+| `j` / `k` | Move down / up |
+| `r` | Run the highlighted test or suite |
+| `d` | Debug the highlighted test or suite |
+| `o` | Go to the highlighted test's source |
+| `Shift+R` | Refresh all tests |
+| Enter / Space | Expand or collapse the tree row |
+
+The helper selects the focused row, obtains its test IDs, and runs only those IDs; it does not use the toolbar's visible-test set. Test suites run their children. This uses VS Code's internal test-selection command, so recheck it after VS Code updates. Install helper version 0.3.0 or newer with `Install-ScmHelper.ps1`, then reload the window.
+
+Validation: `Test-Keybindings.ps1 -CheckInstalledCommands` checks bindings and `node tests/testing-helper.cjs` verifies the helper's focused-ID dispatch and empty-selection handling without running real tests.

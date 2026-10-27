@@ -205,7 +205,7 @@
     {
         "key": "space space",
         "command": "workbench.action.quickOpen",
-        "when": "listFocus && !inputFocus && !textInputFocus && !editorTextFocus && !inQuickOpen && !terminalFocus && focusedView != 'workbench.debug.variablesView' && focusedView != 'workbench.debug.watchExpressionsView'",
+        "when": "listFocus && !inputFocus && !textInputFocus && !editorTextFocus && !inQuickOpen && !terminalFocus && focusedView != 'workbench.debug.variablesView' && focusedView != 'workbench.debug.watchExpressionsView' && focusedView != 'workbench.view.testing'",
     },
     {
         "key": "ctrl+j",
@@ -454,4 +454,13 @@
     {"key":"space c f","when":"editorTextFocus && vim.mode == 'OperatorPendingMode'","command":"editor.action.formatDocument"},
     {"key":"space m f","when":"editorTextFocus && vim.mode == 'OperatorPendingMode'","command":"editor.action.formatDocument"},
     {"key":"space m shift+f","when":"editorTextFocus && vim.mode == 'OperatorPendingMode'","command":"editor.action.formatDocument"}
+,
+    {"key":"j","command":"list.focusDown","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"k","command":"list.focusUp","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"r","command":"beagle.testing.runFocused","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"d","command":"beagle.testing.debugFocused","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"o","command":"testing.editFocusedTest","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"shift+r","command":"testing.refreshTests","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"enter","command":"list.toggleExpand","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"},
+    {"key":"space","command":"list.toggleExpand","when":"focusedView == 'workbench.view.testing' && listFocus && !inputFocus && !textInputFocus"}
 ]
