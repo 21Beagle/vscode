@@ -95,7 +95,7 @@
     {
         "key": "space e",
         "command": "workbench.action.toggleSidebarVisibility",
-        "when": "filesExplorerFocus && !inputFocus",
+        "when": "filesExplorerFocus && listFocus && !inputFocus && !textInputFocus",
     },
     {
         "key": "f5",
@@ -208,7 +208,7 @@
     {
         "key": "space space",
         "command": "workbench.action.quickOpen",
-        "when": "!textInputFocus && !editorTextFocus && !inQuickOpen && !terminalFocus",
+        "when": "listFocus && !inputFocus && !textInputFocus && !editorTextFocus && !inQuickOpen && !terminalFocus",
     },
     {
         "key": "ctrl+j",
@@ -282,7 +282,7 @@
     {
         "key": "space c d",
         "command": "workbench.action.toggleSidebarVisibility",
-        "when": "focusedView == 'workbench.scm' && !inputFocus"
+        "when": "focusedView == 'workbench.scm' && listFocus && !inputFocus && !textInputFocus"
     },
     {
         "key": "j",
