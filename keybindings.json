@@ -278,5 +278,30 @@
         "key": "ctrl+e",
         "command": "hideSuggestWidget",
         "when": "editorTextFocus && vim.mode == 'Insert' && suggestWidgetVisible"
+    },
+    {
+        "key": "space c d",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "focusedView == 'workbench.scm' && !inputFocus"
+    },
+    {
+        "key": "j",
+        "command": "list.focusDown",
+        "when": "focusedView == 'workbench.scm' && listFocus && !inputFocus"
+    },
+    {
+        "key": "k",
+        "command": "list.focusUp",
+        "when": "focusedView == 'workbench.scm' && listFocus && !inputFocus"
+    },
+    {
+        "key": "enter",
+        "command": "list.select",
+        "when": "focusedView == 'workbench.scm' && listFocus && !inputFocus"
+    },
+    {
+        "key": "o",
+        "command": "beagle.scm.openFile",
+        "when": "focusedView == 'workbench.scm' && listFocus && !inputFocus"
     }
 ]

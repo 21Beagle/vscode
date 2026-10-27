@@ -1,0 +1,12 @@
+{
+  "name": "scm-keybindings",
+  "displayName": "Source Control Keybindings",
+  "description": "Open the selected Source Control file after its diff has loaded.",
+  "version": "0.1.1",
+  "publisher": "21beagle",
+  "engines": { "vscode": "^1.85.0" },
+  "main": "./extension.cjs",
+  "contributes": {
+    "commands": [{ "command": "beagle.scm.openFile", "title": "Source Control: Open Selected File" }]
+  }
+}

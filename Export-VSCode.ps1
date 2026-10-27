@@ -28,7 +28,7 @@ if (Test-Path -LiteralPath $profileRoot) {
         $extensionFile = Join-Path $profile.FullName 'extensions.json'
         if (Test-Path -LiteralPath $extensionFile) {
             $extensions = Get-Content -Raw -LiteralPath $extensionFile | ConvertFrom-Json
-            $extensions | ForEach-Object { $_.identifier.id } | Sort-Object -Unique |
+            $extensions | ForEach-Object { $_.identifier.id } | Where-Object { $_ -ne '21beagle.scm-keybindings' } | Sort-Object -Unique |
                 Set-Content -LiteralPath (Join-Path $repoRoot "profiles\$($profile.Name)\extensions.txt") -Encoding utf8
         }
     }
@@ -36,7 +36,7 @@ if (Test-Path -LiteralPath $profileRoot) {
 $installed = Join-Path $env:USERPROFILE '.vscode\extensions\extensions.json'
 if (Test-Path -LiteralPath $installed) {
     $extensions = Get-Content -Raw -LiteralPath $installed | ConvertFrom-Json
-    $extensions | ForEach-Object { $_.identifier.id } | Sort-Object -Unique |
+    $extensions | ForEach-Object { $_.identifier.id } | Where-Object { $_ -ne '21beagle.scm-keybindings' } | Sort-Object -Unique |
         Set-Content -LiteralPath (Join-Path $repoRoot 'extensions.txt') -Encoding utf8
 }
 Write-Output 'Exported VS Code settings, keybindings, tasks, snippets, and extension IDs.'

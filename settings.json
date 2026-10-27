@@ -473,7 +473,7 @@
         },
         {
             "before": ["<leader>", "c", "d"],
-            "commands": ["git.openChange"],
+            "commands": ["workbench.view.scm", "workbench.scm.action.focusNextResourceGroup"],
             "silent": true,
         },
         {

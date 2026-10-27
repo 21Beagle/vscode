@@ -54,3 +54,26 @@ To undo the patch:
 ```
 
 The original handler is backed up beside the patched file. No Codex extension code or account data is stored in this repository.
+## Source Control shortcuts
+
+In normal mode, `Space c d` opens or focuses Source Control, with keyboard focus on the changes list. Press it again from that list to close the sidebar. This replaces the previous direct-diff shortcut on `Space c d`.
+
+Within the Source Control changes list:
+
+| Key | Action |
+| --- | --- |
+| `j` / `k` | Move down / up |
+| `Enter` | Open the selected change as a diff |
+| `o` | Open the selected changed file |
+
+These list shortcuts are disabled in input fields, including the commit message. `Space g` is not changed.
+
+The `o` binding uses the small local helper in `extensions/scm-keybindings/`. It waits for the selected resource to open before opening its file, avoiding a race that otherwise opens the previous editor's file. Deleted files remain viewable through their diff.
+
+Install the helper on another machine with:
+
+```powershell
+.\Install-ScmHelper.ps1
+```
+
+This packages the local source into a VSIX and installs it with the VS Code CLI; it has no additional dependencies. The helper is local and is not available from the Marketplace. Run this installer separately when restoring the configuration.
