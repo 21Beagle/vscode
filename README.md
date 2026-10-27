@@ -98,3 +98,15 @@ In VSCodeVim normal mode, `]` moves forward and `[` moves backward with the foll
 For example, `]c` goes to the next change and `[c` goes to the previous change. Navigation operates on available results: Search navigation needs a Vim `/` or `?` query, highlighted occurrences need symbol highlights, and test-message navigation needs test results.
 
 The local helper routes `[c` and `]c` to the appropriate diff or Git command. Run `Install-ScmHelper.ps1` after restoring or updating its source. These mappings apply only in normal mode; text-box and insert-mode typing is unaffected.
+## Terminal, search, and debug shortcuts
+
+The default profile also defines native VS Code Space chords in `keybindings.json`. These take precedence over Vim leader mappings when their conditions match. Editor chords below are restricted to normal and visual modes in the text editor; new leader commands need matching native chords when sharing these prefixes.
+
+- `Space t` focuses the terminal; `Space e` focuses Explorer; `Space c d` focuses Source Control.
+- `Space s` retains the search suffixes from `settings.json`, including `f` for files, `g` for text search, `s` for symbols, `w` for word/selection search, and `t` for TODOs.
+- `Space d v` focuses Variables. `Space d w` focuses Watch in normal mode and adds the highlighted selection to Watch in visual mode.
+- In Variables and Watch, `j`/`k` move, Enter/Space expand or collapse, and `p` adds clipboard text as a watch expression. In Watch, `a` adds, `d` deletes, and `e` edits an expression. These bindings leave input fields alone.
+- In Source Control, `d` invokes Git's built-in Discard Changes command and its confirmation dialog.
+- The former `Space t b`, `Space t D`, and `Space t h` Vim mappings are now `Space u b`, `Space u D`, and `Space u h`.
+
+The local helper now also supplies clipboard-to-watch and terminal Escape handling. In the terminal, a single Escape is sent to the shell; a second Escape within 500 ms returns to the editor. Run `Install-ScmHelper.ps1` and reload VS Code after restoring these helper changes.

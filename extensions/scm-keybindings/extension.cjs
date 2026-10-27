@@ -62,3 +62,40 @@ function activate(context) {
 }
 
 exports.activate = activate;
+
+const activateBeforeTerminalEscape = exports.activate;
+exports.activate = function (context) {
+    activateBeforeTerminalEscape(context);
+    let lastEscape = 0;
+    let lastTerminal;
+    context.subscriptions.push(vscode.commands.registerCommand('beagle.terminal.escape', async () => {
+        const terminal = vscode.window.activeTerminal;
+        if (!terminal) return;
+        const now = Date.now();
+        if (terminal === lastTerminal && lastEscape && now - lastEscape <= 500) {
+            lastEscape = 0;
+            lastTerminal = undefined;
+            await vscode.commands.executeCommand('workbench.action.closeQuickOpen');
+            if (vscode.window.tabGroups.activeTabGroup.tabs.length === 0) {
+                await vscode.commands.executeCommand('workbench.action.reopenClosedEditor');
+            }
+            await vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup');
+            return;
+        }
+        lastEscape = now;
+        lastTerminal = terminal;
+        terminal.sendText('\x1b', false);
+    }));
+};
+const activateBeforeDebugWatch = exports.activate;
+exports.activate = function (context) {
+    activateBeforeDebugWatch(context);
+    context.subscriptions.push(vscode.commands.registerCommand('beagle.debug.watchClipboard', async () => {
+        const expression = (await vscode.env.clipboard.readText()).trim();
+        if (!expression) return;
+        await vscode.commands.executeCommand('debug.addToWatchExpressions', {
+            variable: { evaluateName: expression },
+        });
+        await vscode.commands.executeCommand('workbench.debug.action.focusWatchView');
+    }));
+};

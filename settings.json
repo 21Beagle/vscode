@@ -140,8 +140,8 @@
             "silent": true,
         },
         {
-            "before": ["<C-t>"],
-            "commands": ["workbench.action.terminal.toggleTerminal"],
+            "before": ["<leader>", "t"],
+            "commands": ["workbench.action.terminal.focus"],
             "silent": true,
         },
         {
@@ -482,7 +482,7 @@
             "silent": true,
         },
         {
-            "before": ["<leader>", "t", "h"],
+            "before": ["<leader>", "u", "h"],
             "commands": [
                 {
                     "command": "workbench.action.openSettings",
@@ -547,12 +547,12 @@
             "silent": true,
         },
         {
-            "before": ["<leader>", "t", "b"],
+            "before": ["<leader>", "u", "b"],
             "commands": ["git.blame.toggleEditorDecoration"],
             "silent": true,
         },
         {
-            "before": ["<leader>", "t", "D"],
+            "before": ["<leader>", "u", "D"],
             "commands": ["git.openChange"],
             "silent": true,
         },
@@ -1033,4 +1033,5 @@
     "chat.extensionUnification.enabled": false,
     "chat.disableAIFeatures": true,
     "autocompleteCodex.enabled": true,
+    "terminal.integrated.commandsToSkipShell": ["beagle.terminal.escape"],
 }

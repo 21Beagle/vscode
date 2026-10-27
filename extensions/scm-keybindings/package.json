@@ -11,6 +11,10 @@
   "contributes": {
     "commands": [
       {
+        "command": "beagle.debug.watchClipboard",
+        "title": "Debug: Add Clipboard Expression to Watch"
+      },
+      {
         "command": "beagle.scm.openFile",
         "title": "Source Control: Open Selected File"
       },
@@ -21,6 +25,10 @@
       {
         "command": "beagle.navigation.previousChange",
         "title": "Navigation: Previous Change (Git or Diff)"
+      },
+      {
+        "command": "beagle.terminal.escape",
+        "title": "Terminal: Escape or Return to Editor on Double Escape"
       }
     ]
   }
