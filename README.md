@@ -129,7 +129,7 @@ The checks cover all 113 configured leader/mode combinations, duplicate chords, 
 `Space c r` invokes Rename Symbol in normal mode. `Shift+Alt+Z` invokes VS Code's built-in word highlighting; its old extension command is no longer installed. Variables and Watch are excluded from the list-only `Space Space` chord so Space expands their entries without starting that chord.
 ## Testing tree shortcuts
 
-`Space m t` opens Testing from normal mode in the editor. The following controls apply only to the focused Testing tree, leaving filter fields and other inputs alone:
+`Space m t` opens Testing and moves focus directly to its tree from normal mode in the editor. In the Testing filter, Enter moves into the tree; when filter suggestions are visible, Enter accepts a suggestion first. The following controls apply only to the focused Testing tree, leaving filter fields and other inputs alone:
 
 | Key | Action |
 | --- | --- |

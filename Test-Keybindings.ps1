@@ -32,9 +32,12 @@ Assert-True ($listQuickOpen.Count -eq 1 -and $listQuickOpen[0].when.Contains("fo
 $marks = @($bindings | Where-Object { $_.key -eq "space '" })
 Assert-True ($marks.Count -eq 1 -and $marks[0].command -eq 'vim.remap' -and $marks[0].args.commands[0].command -eq ':marks') 'Marks must use the supported Vim remap command format.'
 $testingOpen = @($bindings | Where-Object { $_.key -eq 'space m t' -and $_.when.Contains('editorTextFocus') })
-Assert-True ($testingOpen.Count -eq 1 -and $testingOpen[0].command -eq 'workbench.view.extension.test') 'Leader MT must use the Testing container open command, not the tree view ID.'
+Assert-True ($testingOpen.Count -eq 1 -and $testingOpen[0].command -eq 'runCommands') 'Leader MT must open Testing and move focus to its tree.'
+Assert-True (($testingOpen[0].args.commands -join ',') -eq 'workbench.view.extension.test,widgetNavigation.focusNext') 'Testing must open before widget navigation focuses the tree.'
+$filterEnter = @($bindings | Where-Object { $_.key -eq 'enter' -and $_.command -eq 'widgetNavigation.focusNext' -and $_.when.Contains("focusedView == 'workbench.view.testing'") })
+Assert-True ($filterEnter.Count -eq 1 -and $filterEnter[0].when.Contains('inputFocus && !listFocus && !suggestWidgetVisible')) 'Testing filter Enter must leave the filter while preserving suggestion acceptance.'
 Assert-True (@($bindings | Where-Object command -eq 'workbench.view.testing').Count -eq 0) 'The Testing tree view ID is not an executable command.'
-$testTree = @($bindings | Where-Object { $_.when -and $_.when.StartsWith("focusedView == 'workbench.view.testing' &&") })
+$testTree = @($bindings | Where-Object { $_.when -and $_.when.StartsWith("focusedView == 'workbench.view.testing' && listFocus &&") })
 Assert-True ($testTree.Count -eq 8) 'Expected eight Testing tree controls.'
 $expectedTests = @{ j = 'list.focusDown'; k = 'list.focusUp'; r = 'beagle.testing.runFocused'; d = 'beagle.testing.debugFocused'; o = 'testing.editFocusedTest'; 'shift+r' = 'testing.refreshTests'; enter = 'list.toggleExpand'; space = 'list.toggleExpand' }
 foreach ($key in $expectedTests.Keys) {
