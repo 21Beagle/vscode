@@ -1,0 +1,53 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "dotnet: format current file",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-Command",
+                "$file=$env:VSCODE_DOTNET_FORMAT_FILE; $start=Split-Path -Parent $file; $dir=$start; $sln=$null; while ($dir) { $sln=Get-ChildItem -LiteralPath $dir -Filter *.sln -File -ErrorAction SilentlyContinue | Select-Object -First 1; if ($sln) { break }; $parent=Split-Path -Parent $dir; if (-not $parent -or $parent -eq $dir) { break }; $dir=$parent }; if (-not $sln) { Write-Error ('No .sln found upward from: ' + $start); exit 1 }; Push-Location -LiteralPath $sln.Directory.FullName; $rel=(Resolve-Path -LiteralPath $file -Relative).ToString().Replace('\\','/'); Write-Host ('dotnet format file: ' + $rel); & dotnet format $sln.FullName --include $rel --verbosity minimal; $code=$LASTEXITCODE; Pop-Location; exit $code",
+            ],
+            "options": {
+                "env": {
+                    "VSCODE_DOTNET_FORMAT_FILE": "${file}",
+                },
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false,
+            },
+        },
+        {
+            "label": "dotnet: format solution",
+            "type": "process",
+            "command": "powershell.exe",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-Command",
+                "$file=$env:VSCODE_DOTNET_FORMAT_FILE; $start=Split-Path -Parent $file; $dir=$start; $sln=$null; while ($dir) { $sln=Get-ChildItem -LiteralPath $dir -Filter *.sln -File -ErrorAction SilentlyContinue | Select-Object -First 1; if ($sln) { break }; $parent=Split-Path -Parent $dir; if (-not $parent -or $parent -eq $dir) { break }; $dir=$parent }; if (-not $sln) { Write-Error ('No .sln found upward from: ' + $start); exit 1 }; Push-Location -LiteralPath $sln.Directory.FullName; Write-Host ('dotnet format solution: ' + $sln.FullName); & dotnet format $sln.FullName --verbosity minimal; $code=$LASTEXITCODE; Pop-Location; exit $code",
+            ],
+            "options": {
+                "env": {
+                    "VSCODE_DOTNET_FORMAT_FILE": "${file}",
+                },
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "clear": true,
+                "showReuseMessage": false,
+            },
+        },
+    ],
+}

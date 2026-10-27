@@ -1,0 +1,34 @@
+{
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "terminal.integrated.tabs.enabled": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "highlight.configuration.ignoreCase": false,
+    "editor.formatOnSave": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "git.autofetch": true,
+
+    "editor.fontFamily": "'Cascadia Mono Light', 'Consolas', 'Courier New', monospace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "prettier.tabWidth": 4,
+    "files.maxMemoryForLargeFilesMB": 16000,
+    "cSpell.userWords": ["Consts", "ENPASSANT", "MOUSEBUTTONUP", "Perma", "rnbqkbnr"],
+    "prettier.printWidth": 160,
+    "editor.stickyTabStops": true,
+    "editor.stickyScroll.enabled": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
+    },
+    "cSpell.diagnosticLevel": "Hint",
+    "redhat.telemetry.enabled": true,
+    "[xml]": {
+        "editor.defaultFormatter": "redhat.vscode-xml"
+    },
+    // "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "errorLens.delay": 1000,
+    "workbench.colorTheme": "Ocean Eyes Dark"
+    // "terminal.integrated.automationProfile.linux": {}
+}

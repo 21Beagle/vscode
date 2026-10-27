@@ -1,0 +1,12 @@
+# Local VS Code state and secrets
+History/
+globalStorage/
+workspaceStorage/
+sync/
+keybinding-backups/
+chatLanguageModels.json
+state.vscdb*
+*.log
+*.bak
+.env
+.env.*

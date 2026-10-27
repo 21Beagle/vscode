@@ -1,0 +1,282 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "shift+alt+z",
+        "command": "highlight.selectedWords",
+    },
+    {
+        "key": "shift+f8",
+        "command": "-highlight.selectedWords",
+    },
+    {
+        "key": "ctrl+'",
+        "command": "workbench.action.terminal.focus",
+    },
+    {
+        "key": "alt+h",
+        "command": "workbench.action.navigateBack",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "alt+l",
+        "command": "workbench.action.navigateForward",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "alt+j",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')",
+    },
+    {
+        "key": "alt+down",
+        "command": "editor.action.moveLinesDownAction",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')",
+    },
+    {
+        "key": "alt+k",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')",
+    },
+    {
+        "key": "alt+up",
+        "command": "editor.action.moveLinesUpAction",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')",
+    },
+    {
+        "key": "alt+o",
+        "command": "editor.action.smartSelect.expand",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock' || vim.mode == 'OperatorPendingMode')",
+    },
+    {
+        "key": "alt+i",
+        "command": "editor.action.smartSelect.shrink",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock' || vim.mode == 'OperatorPendingMode')",
+    },
+    {
+        "key": "ctrl+/",
+        "command": "editor.action.commentLine",
+        "when": "editorTextFocus && (vim.mode == 'Normal' || vim.mode == 'Insert' || vim.mode == 'Visual' || vim.mode == 'VisualLine' || vim.mode == 'VisualBlock')",
+    },
+    {
+        "key": "ctrl+backspace",
+        "command": "deleteWordLeft",
+        "when": "editorTextFocus && vim.mode == 'Insert'",
+    },
+    {
+        "key": "ctrl+delete",
+        "command": "deleteWordRight",
+        "when": "editorTextFocus && vim.mode == 'Insert'",
+    },
+    {
+        "key": "tab",
+        "command": "jumpToNextSnippetPlaceholder",
+        "when": "editorTextFocus && vim.mode == 'Insert' && inSnippetMode && hasNextTabstop && !suggestWidgetVisible",
+    },
+    {
+        "key": "shift+tab",
+        "command": "jumpToPrevSnippetPlaceholder",
+        "when": "editorTextFocus && vim.mode == 'Insert' && inSnippetMode && hasPrevTabstop && !suggestWidgetVisible",
+    },
+    {
+        "key": "tab",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && vim.mode == 'Insert' && suggestWidgetVisible",
+    },
+    {
+        "key": "shift+tab",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && vim.mode == 'Insert' && suggestWidgetVisible",
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminalFocus",
+    },
+    {
+        "key": "space e",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "filesExplorerFocus && !inputFocus",
+    },
+    {
+        "key": "f5",
+        "command": "workbench.action.debug.start",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "shift+f5",
+        "command": "workbench.action.debug.stop",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f17",
+        "command": "workbench.action.debug.stop",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "ctrl+shift+f5",
+        "command": "workbench.action.debug.restart",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f9",
+        "command": "editor.debug.action.toggleBreakpoint",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "shift+f9",
+        "command": "editor.debug.action.conditionalBreakpoint",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f21",
+        "command": "editor.debug.action.conditionalBreakpoint",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "ctrl+f9",
+        "command": "editor.debug.action.addLogPoint",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f10",
+        "command": "workbench.action.debug.stepOver",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f11",
+        "command": "workbench.action.debug.stepInto",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "ctrl+f10",
+        "command": "editor.debug.action.runToCursor",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f8",
+        "command": "workbench.action.debug.callStackDown",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "shift+f8",
+        "command": "workbench.action.debug.callStackUp",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f20",
+        "command": "workbench.action.debug.callStackUp",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f7",
+        "command": "workbench.view.debug",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "shift+f7",
+        "command": "workbench.action.closeSidebar",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "f19",
+        "command": "workbench.action.closeSidebar",
+        "when": "editorTextFocus && vim.mode == 'Normal'",
+    },
+    {
+        "key": "escape escape",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.closeQuickOpen",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        },
+        "when": "!editorTextFocus && !activeEditorGroupEmpty"
+    },
+    {
+        "key": "escape escape",
+        "command": "runCommands",
+        "args": {
+            "commands": [
+                "workbench.action.closeQuickOpen",
+                "workbench.action.reopenClosedEditor",
+                "workbench.action.focusActiveEditorGroup"
+            ]
+        },
+        "when": "!editorTextFocus && activeEditorGroupEmpty"
+    },
+    {
+        "key": "space space",
+        "command": "workbench.action.quickOpen",
+        "when": "!textInputFocus && !editorTextFocus && !inQuickOpen && !terminalFocus",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "list.focusDown",
+        "when": "listFocus && !inputFocus",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "list.focusUp",
+        "when": "listFocus && !inputFocus",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevSuggestion",
+        "when": "suggestWidgetVisible && textInputFocus",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "showNextParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "showPrevParameterHint",
+        "when": "editorFocus && parameterHintsMultipleSignatures && parameterHintsVisible",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "quickInput.next",
+        "when": "inQuickOpen",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "quickInput.previous",
+        "when": "inQuickOpen",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel",
+    },
+    {
+        "key": "ctrl+j",
+        "command": "selectNextCodeAction",
+        "when": "codeActionMenuVisible",
+    },
+    {
+        "key": "ctrl+k",
+        "command": "selectPrevCodeAction",
+        "when": "codeActionMenuVisible",
+    },
+    {
+        "key": "shift+f11",
+        "command": "workbench.action.debug.stepOut",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "f23",
+        "command": "workbench.action.debug.stepOut",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "hideSuggestWidget",
+        "when": "editorTextFocus && vim.mode == 'Insert' && suggestWidgetVisible"
+    }
+]

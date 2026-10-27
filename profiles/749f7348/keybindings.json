@@ -1,0 +1,15 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+    {
+        "key": "shift+alt+z",
+        "command": "highlight.selectedWords"
+    },
+    {
+        "key": "shift+f8",
+        "command": "-highlight.selectedWords"
+    },
+    {
+        "key": "ctrl+'",
+        "command": "workbench.action.terminal.focus"
+    }
+]
