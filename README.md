@@ -110,3 +110,20 @@ The default profile also defines native VS Code Space chords in `keybindings.jso
 - The former `Space t b`, `Space t D`, and `Space t h` Vim mappings are now `Space u b`, `Space u D`, and `Space u h`.
 
 The local helper now also supplies clipboard-to-watch and terminal Escape handling. In the terminal, a single Escape is sent to the shell; a second Escape within 500 ms returns to the editor. Run `Install-ScmHelper.ps1` and reload VS Code after restoring these helper changes.
+## Check and synchronize leader shortcuts
+
+Native Space chords intercept the leader before VSCodeVim can process it. Every leader mapping in `settings.json` therefore needs a corresponding native editor binding, including separate bindings where normal, visual, or operator-pending actions differ. `Sync-LeaderBindings.ps1` fills gaps while preserving the explicit bindings above, including visual `Space d w` and editor/panel focus restrictions.
+
+After editing your live VSCodeVim leader mappings, export and synchronize them with:
+
+```powershell
+.\Export-VSCode.ps1
+.\Sync-LeaderBindings.ps1 -ApplyToUser
+.\Test-Keybindings.ps1 -CheckInstalledCommands
+```
+
+`-ApplyToUser` backs up the live keybindings before copying the updated repository bindings into VS Code. Without that switch, synchronization changes only the repository copy. `Sync-LeaderBindings.ps1 -Check` reports missing native coverage without changing files. Existing native bindings are preserved, so edit their command targets directly when changing an existing shortcut's behavior.
+
+The checks cover all 113 configured leader/mode combinations, duplicate chords, rename, visual selection-to-Watch, visual formatting, Vim marks dispatch, and debug-panel input restrictions. Optional installed-command checking verifies command references against local VS Code and extension definitions. Runtime actions still depend on their context: Rename Symbol needs a language provider, and debug actions need an appropriate debug session.
+
+`Space c r` invokes Rename Symbol in normal mode. `Shift+Alt+Z` invokes VS Code's built-in word highlighting; its old extension command is no longer installed. Variables and Watch are excluded from the list-only `Space Space` chord so Space expands their entries without starting that chord.
