@@ -77,3 +77,24 @@ Install the helper on another machine with:
 ```
 
 This packages the local source into a VSIX and installs it with the VS Code CLI; it has no additional dependencies. The helper is local and is not available from the Marketplace. Run this installer separately when restoring the configuration.
+## Bracket navigation
+
+In VSCodeVim normal mode, `]` moves forward and `[` moves backward with the following suffixes:
+
+| Suffix | Navigate |
+| --- | --- |
+| `b` | Open editor tabs |
+| `c` | Change chunks: diff hunks inside a diff editor, Git changes in a regular editor |
+| `d` | Diagnostics in the current file |
+| `q` | Diagnostics across files |
+| `l` | Diagnostics in the current file (existing location-list alias) |
+| `s` | Vim search matches (`n` / `N`) |
+| `r` | Highlighted symbol occurrences |
+| `x` | Text merge-conflict markers |
+| `h` | Navigation history |
+| `w` | Editor groups / split windows |
+| `t` | Test result messages |
+
+For example, `]c` goes to the next change and `[c` goes to the previous change. Navigation operates on available results: Search navigation needs a Vim `/` or `?` query, highlighted occurrences need symbol highlights, and test-message navigation needs test results.
+
+The local helper routes `[c` and `]c` to the appropriate diff or Git command. Run `Install-ScmHelper.ps1` after restoring or updating its source. These mappings apply only in normal mode; text-box and insert-mode typing is unaffected.

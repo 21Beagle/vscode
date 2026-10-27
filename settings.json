@@ -493,12 +493,12 @@
         },
         {
             "before": ["]", "c"],
-            "commands": ["workbench.action.editor.nextChange"],
+            "commands": ["beagle.navigation.nextChange"],
             "silent": true,
         },
         {
             "before": ["[", "c"],
-            "commands": ["workbench.action.editor.previousChange"],
+            "commands": ["beagle.navigation.previousChange"],
             "silent": true,
         },
         {
@@ -829,6 +829,66 @@
         {
             "before": ["s", "r"],
             "after": ["<plugcs>"],
+            "silent": true
+        },
+        {
+            "before": ["]", "s"],
+            "after": ["n"],
+            "silent": true
+        },
+        {
+            "before": ["[", "s"],
+            "after": ["N"],
+            "silent": true
+        },
+        {
+            "before": ["]", "r"],
+            "commands": ["editor.action.wordHighlight.next"],
+            "silent": true
+        },
+        {
+            "before": ["[", "r"],
+            "commands": ["editor.action.wordHighlight.prev"],
+            "silent": true
+        },
+        {
+            "before": ["]", "x"],
+            "commands": ["merge-conflict.next"],
+            "silent": true
+        },
+        {
+            "before": ["[", "x"],
+            "commands": ["merge-conflict.previous"],
+            "silent": true
+        },
+        {
+            "before": ["]", "h"],
+            "commands": ["workbench.action.navigateForward"],
+            "silent": true
+        },
+        {
+            "before": ["[", "h"],
+            "commands": ["workbench.action.navigateBack"],
+            "silent": true
+        },
+        {
+            "before": ["]", "w"],
+            "commands": ["workbench.action.focusNextGroup"],
+            "silent": true
+        },
+        {
+            "before": ["[", "w"],
+            "commands": ["workbench.action.focusPreviousGroup"],
+            "silent": true
+        },
+        {
+            "before": ["]", "t"],
+            "commands": ["testing.goToNextMessage"],
+            "silent": true
+        },
+        {
+            "before": ["[", "t"],
+            "commands": ["testing.goToPreviousMessage"],
             "silent": true
         }
     ],

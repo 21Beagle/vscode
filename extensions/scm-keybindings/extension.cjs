@@ -9,6 +9,16 @@ function fileFromTab(tab) {
 }
 
 function activate(context) {
+    for (const [direction, regular, diff] of [
+        ['next', 'workbench.action.editor.nextChange', 'workbench.action.compareEditor.nextChange'],
+        ['previous', 'workbench.action.editor.previousChange', 'workbench.action.compareEditor.previousChange'],
+    ]) {
+        context.subscriptions.push(vscode.commands.registerCommand(`beagle.navigation.${direction}Change`, async () => {
+            const tab = vscode.window.tabGroups.activeTabGroup.activeTab;
+            const isDiff = tab?.input instanceof vscode.TabInputTextDiff;
+            await vscode.commands.executeCommand(isDiff ? diff : regular);
+        }));
+    }
     let opening = false;
     context.subscriptions.push(vscode.commands.registerCommand('beagle.scm.openFile', async () => {
         if (opening) return;

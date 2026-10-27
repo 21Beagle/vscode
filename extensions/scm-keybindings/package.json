@@ -1,12 +1,27 @@
 {
   "name": "scm-keybindings",
   "displayName": "Source Control Keybindings",
-  "description": "Open the selected Source Control file after its diff has loaded.",
-  "version": "0.1.1",
+  "description": "Source Control file opening and diff-aware change navigation.",
+  "version": "0.2.0",
   "publisher": "21beagle",
-  "engines": { "vscode": "^1.85.0" },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
   "main": "./extension.cjs",
   "contributes": {
-    "commands": [{ "command": "beagle.scm.openFile", "title": "Source Control: Open Selected File" }]
+    "commands": [
+      {
+        "command": "beagle.scm.openFile",
+        "title": "Source Control: Open Selected File"
+      },
+      {
+        "command": "beagle.navigation.nextChange",
+        "title": "Navigation: Next Change (Git or Diff)"
+      },
+      {
+        "command": "beagle.navigation.previousChange",
+        "title": "Navigation: Previous Change (Git or Diff)"
+      }
+    ]
   }
 }
