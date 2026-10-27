@@ -31,6 +31,9 @@ $listQuickOpen = @($bindings | Where-Object { $_.key -eq 'space space' -and $_.w
 Assert-True ($listQuickOpen.Count -eq 1 -and $listQuickOpen[0].when.Contains("focusedView != 'workbench.debug.watchExpressionsView'")) 'List Quick Open must not intercept Watch Space expansion.'
 $marks = @($bindings | Where-Object { $_.key -eq "space '" })
 Assert-True ($marks.Count -eq 1 -and $marks[0].command -eq 'vim.remap' -and $marks[0].args.commands[0].command -eq ':marks') 'Marks must use the supported Vim remap command format.'
+$testingOpen = @($bindings | Where-Object { $_.key -eq 'space m t' -and $_.when.Contains('editorTextFocus') })
+Assert-True ($testingOpen.Count -eq 1 -and $testingOpen[0].command -eq 'workbench.view.extension.test') 'Leader MT must use the Testing container open command, not the tree view ID.'
+Assert-True (@($bindings | Where-Object command -eq 'workbench.view.testing').Count -eq 0) 'The Testing tree view ID is not an executable command.'
 $testTree = @($bindings | Where-Object { $_.when -and $_.when.StartsWith("focusedView == 'workbench.view.testing' &&") })
 Assert-True ($testTree.Count -eq 8) 'Expected eight Testing tree controls.'
 $expectedTests = @{ j = 'list.focusDown'; k = 'list.focusUp'; r = 'beagle.testing.runFocused'; d = 'beagle.testing.debugFocused'; o = 'testing.editFocusedTest'; 'shift+r' = 'testing.refreshTests'; enter = 'list.toggleExpand'; space = 'list.toggleExpand' }

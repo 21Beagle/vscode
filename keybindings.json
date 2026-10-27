@@ -429,7 +429,7 @@
     {"key":"space m shift+l","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"dotnet.restore.all"},
     {"key":"space m shift+r","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"csdevkit.debug.noDebugProjectLaunch"},
     {"key":"space m s","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"csdevkit.manageUserSecrets"},
-    {"key":"space m t","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"workbench.view.testing"},
+    {"key":"space m t","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"workbench.view.extension.test"},
     {"key":"space m r","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"dotnet.test.runTestsInContext"},
     {"key":"space m a","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"testing.runAll"},
     {"key":"space m p","when":"editorTextFocus && (vim.mode == 'Normal' || neovim.mode == 'normal')","command":"testing.openOutputPeek"},

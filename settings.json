@@ -738,7 +738,7 @@
         },
         {
             "before": ["<leader>", "m", "t"],
-            "commands": ["workbench.view.testing"],
+            "commands": ["workbench.view.extension.test"],
             "silent": true,
         },
         {
