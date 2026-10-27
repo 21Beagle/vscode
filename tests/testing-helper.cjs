@@ -5,7 +5,8 @@ const assert = require('node:assert/strict');
 const callbacks = new Map();
 const calls = [];
 let selection = { include: ['controller\0suite\0focused-test'], exclude: [] };
-const vscode = { commands: {
+const messages = [];
+const vscode = { window: { showInformationMessage(message) { messages.push(message); } }, commands: {
     registerCommand(id, callback) { callbacks.set(id, callback); return { dispose() {} }; },
     async executeCommand(...args) {
         calls.push(args);
@@ -17,6 +18,13 @@ const helper = path.join(__dirname, '../extensions/scm-keybindings/extension.cjs
 vm.runInNewContext(fs.readFileSync(helper, 'utf8'), sandbox);
 sandbox.exports.activate({ subscriptions: [] });
 (async () => {
+    calls.length = 0;
+    await callbacks.get('beagle.testing.focusTree')();
+    assert.deepEqual(calls, [
+        ['workbench.view.extension.test'],
+        ['_testing.getExplorerSelection'],
+        ['_revealTestInExplorer', 'controller\0suite\0focused-test', true],
+    ], 'Opening Testing must explicitly reveal and focus a tree row');
     for (const [id, group] of [['beagle.testing.runFocused', 2], ['beagle.testing.debugFocused', 4]]) {
         calls.length = 0;
         await callbacks.get(id)();
@@ -31,6 +39,10 @@ sandbox.exports.activate({ subscriptions: [] });
         await callbacks.get('beagle.testing.runFocused')();
         assert.equal(calls.length, 2, 'An empty selection must never fall back to Run All');
     }
+    calls.length = 0;
+    await callbacks.get('beagle.testing.focusTree')();
+    assert.equal(calls.length, 2);
+    assert.equal(messages.length, 1, 'Empty Testing view should explain why no row can be focused');
     assert(callbacks.has('beagle.debug.watchClipboard'));
     assert(callbacks.has('beagle.scm.openFile'));
     assert(callbacks.has('beagle.terminal.escape'));

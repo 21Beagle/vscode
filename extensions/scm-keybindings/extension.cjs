@@ -102,6 +102,17 @@ exports.activate = function (context) {
 const activateBeforeTesting = exports.activate;
 exports.activate = function (context) {
     activateBeforeTesting(context);
+    context.subscriptions.push(vscode.commands.registerCommand('beagle.testing.focusTree', async () => {
+        await vscode.commands.executeCommand('workbench.view.extension.test');
+        const selection = await vscode.commands.executeCommand('_testing.getExplorerSelection');
+        const testId = selection?.include?.[0];
+        if (!testId) {
+            vscode.window.showInformationMessage('No tests are available in the current Testing view. Check discovery and the filter.');
+            return;
+        }
+        // Revealing an actual test calls the tree's domFocus(), unlike view.focus().
+        await vscode.commands.executeCommand('_revealTestInExplorer', testId, true);
+    }));
     for (const [command, group] of [
         ['beagle.testing.runFocused', 2],
         ['beagle.testing.debugFocused', 4],

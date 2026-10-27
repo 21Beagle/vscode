@@ -738,7 +738,7 @@
         },
         {
             "before": ["<leader>", "m", "t"],
-            "commands": ["workbench.view.extension.test", "widgetNavigation.focusNext"],
+            "commands": ["beagle.testing.focusTree"],
             "silent": true,
         },
         {

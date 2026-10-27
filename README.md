@@ -140,6 +140,8 @@ The checks cover all 113 configured leader/mode combinations, duplicate chords, 
 | `Shift+R` | Refresh all tests |
 | Enter / Space | Expand or collapse the tree row |
 
-The helper selects the focused row, obtains its test IDs, and runs only those IDs; it does not use the toolbar's visible-test set. Test suites run their children. This uses VS Code's internal test-selection command, so recheck it after VS Code updates. Install helper version 0.3.0 or newer with `Install-ScmHelper.ps1`, then reload the window.
+The helper selects the focused row, obtains its test IDs, and runs only those IDs; it does not use the toolbar's visible-test set. Test suites run their children. This uses VS Code's internal test-selection command, so recheck it after VS Code updates. Install helper version 0.3.1 or newer with `Install-ScmHelper.ps1`, then reload the window.
 
 Validation: `Test-Keybindings.ps1 -CheckInstalledCommands` checks bindings and `node tests/testing-helper.cjs` verifies the helper's focused-ID dispatch and empty-selection handling without running real tests.
+
+Testing focus uses the helper's explicit test-row reveal, rather than generic widget navigation. Both Space m t and Enter in the Testing filter use this route. Reload the window after updating the helper. If no test row is available, it reports that discovery or the current filter needs attention.

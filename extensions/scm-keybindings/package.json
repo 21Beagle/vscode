@@ -2,7 +2,7 @@
   "name": "scm-keybindings",
   "displayName": "Source Control Keybindings",
   "description": "Source Control file opening and diff-aware change navigation.",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "publisher": "21beagle",
   "engines": {
     "vscode": "^1.85.0"
@@ -37,6 +37,10 @@
       {
         "command": "beagle.testing.debugFocused",
         "title": "Testing: Debug Focused Test"
+      },
+      {
+        "command": "beagle.testing.focusTree",
+        "title": "Testing: Focus Test Tree"
       }
     ]
   }
