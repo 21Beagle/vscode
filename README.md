@@ -37,3 +37,20 @@ For the Work profile, create or select that profile in VS Code and use the files
 Settings files use JSON with comments (JSONC), including trailing commas. Some settings and tasks depend on Windows, installed tools, or particular extensions.
 
 Account data, credentials, chat history, workspace state, caches, and configuration backups are excluded.
+## Codex Escape behavior
+
+The installed Codex extension consumes Escape inside its webview to stop a running response. The local patch below disables that response-cancellation shortcut and lets Escape pass through the chat input to VS Code, where `Esc Esc` returns to the editor. Single Escape inside the text editor remains controlled by VSCodeVim.
+
+```powershell
+.\Patch-CodexEscape.ps1
+```
+
+Then run **Developer: Reload Window**. The Stop button remains available in Codex. This is a local patch to the installed extension, tested with version `26.1021.22027`; extension updates may overwrite it. The script checks the handler before changing it and stops if a newer version differs.
+
+To undo the patch:
+
+```powershell
+.\Patch-CodexEscape.ps1 -Restore
+```
+
+The original handler is backed up beside the patched file. No Codex extension code or account data is stored in this repository.
